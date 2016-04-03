@@ -137,7 +137,24 @@ public class SwiftCarousel: UIView {
         }
         setupViews(choices)
     }
-    
+	
+	public var pagingEnabled = false {
+        didSet {
+            scrollView.pagingEnabled = pagingEnabled
+            if pagingEnabled {
+                scrollView.decelerationRate = UIScrollViewDecelerationRateFast
+            } else {
+                scrollView.decelerationRate = UIScrollViewDecelerationRateNormal
+            }
+        }
+    }
+	
+    public var contentOffset: CGPoint {
+        get {
+            return scrollView.contentOffset
+        }
+    }
+	
     // MARK: - Inits
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -465,5 +482,9 @@ public class SwiftCarousel: UIView {
      */
     public func selectItem(choice: Int, animated: Bool) {
         selectItem(choice, animated: animated, force: false)
+    }
+	
+    public func setContentOffset(offset: CGPoint, animated: Bool) {
+        scrollView.setContentOffset(offset, animated: animated)
     }
 }
