@@ -195,6 +195,8 @@ public class SwiftCarousel: UIView {
         scrollView.delegate = self
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.scrollEnabled = true
+        scrollView.pagingEnabled = pagingEnabled
+        scrollView.decelerationRate = pagingEnabled ? UIScrollViewDecelerationRateFast : UIScrollViewDecelerationRateNormal
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         addSubview(scrollView)
